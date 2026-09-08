@@ -1,0 +1,117 @@
+JAN SAHAYATA – FINAL SETUP GUIDE
+================================
+
+This package contains:
+- index.html + style.css + script.js + config.js
+- posters/design images
+- Code.gs = Google Sheets + complaint tracking + real AI backend
+
+IMPORTANT: Do not put your OpenAI API key inside GitHub files.
+The key belongs only in Google Apps Script Project Settings > Script properties.
+
+PART 1 — GOOGLE SHEET
+---------------------
+1. Create a Google Sheet named: Jan Sahayata Complaints
+2. Rename the first tab to: Complaints
+3. Put these headings in row 1:
+   Complaint ID | Date | Name | Phone | Area | Category | Description | Status
+4. Open Extensions > Apps Script.
+5. Delete the sample code and paste all of Code.gs from this package.
+6. Save the project.
+
+PART 2 — OPENAI API KEY (for REAL AI)
+--------------------------------------
+1. In Apps Script, open Project Settings.
+2. Under Script Properties, add:
+   Property: OPENAI_API_KEY
+   Value: YOUR_OPENAI_API_KEY
+3. Optional second property:
+   Property: OPENAI_MODEL
+   Value: gpt-5.6-luna
+4. Save the properties.
+
+Never share your API key in chat, GitHub, screenshots, or this website.
+
+PART 3 — DEPLOY BACKEND
+------------------------
+1. In Apps Script click Deploy > New deployment.
+2. Select type: Web app.
+3. Execute as: Me (the account that owns the Sheet/script).
+4. Who has access: Anyone.
+5. Deploy and complete Google's authorization steps.
+6. Copy the Web app URL ending in /exec.
+
+PART 4 — CONNECT THE WEBSITE
+----------------------------
+1. Open config.js.
+2. Replace:
+   PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE
+   with your full /exec URL.
+3. Save config.js.
+4. Upload all website files to the GitHub Pages repository root.
+5. Make sure index.html is in the root and assets/images have the same names.
+
+PART 5 — TEST
+-------------
+A. Open the website.
+B. Submit a test complaint.
+C. Confirm a new row appears in Google Sheet.
+D. Copy the complaint ID, e.g. JS-2026-12345.
+E. Use the Track Complaint section and enter that ID.
+F. Ask the AI a question and confirm it replies.
+G. Change Status in the Sheet from “दर्ज” to “कार्यवाही में” or “हल हो गया”.
+H. Track the same ID again and confirm the updated status appears.
+I. Tap WhatsApp and confirm it opens the configured WhatsApp number.
+
+RECOMMENDED SHEET STATUS VALUES
+--------------------------------
+दर्ज
+कार्यवाही में
+हल हो गया
+
+SECURITY / PRIVACY
+------------------
+- Do not collect passwords, OTPs, bank PINs, or identity-document numbers.
+- Keep the Google Sheet private; only the authorized admin should edit it.
+- The public website only needs the Apps Script web-app URL.
+- The website does NOT expose the full complaint list publicly.
+- Complaint tracking returns limited details for the supplied complaint ID.
+- AI answers are guidance only and are not an official government decision.
+
+IF THE WEBSITE SAYS “Backend is not connected”
+----------------------------------------------
+Check config.js. The /exec URL must be pasted there exactly.
+After changing it, upload config.js again to GitHub Pages.
+
+IF AI DOES NOT WORK
+-------------------
+Check that OPENAI_API_KEY exists in Apps Script Project Settings > Script properties,
+then save the script and redeploy the web app to a new version.
+
+IF COMPLAINTS DO NOT APPEAR IN SHEET
+-------------------------------------
+Check:
+- Sheet tab is exactly “Complaints”
+- Row 1 contains the eight headings
+- Apps Script deployment is a Web app
+- Execute as is “Me”
+- Access is “Anyone”
+- Website uses the current /exec URL, not the /dev URL
+
+PART 6 — GOOGLE FORM
+---------------------
+The website now includes a “Google Form से समस्या दर्ज करें” button linked to:
+https://forms.gle/uwmgqdJRQSmZkPC88
+
+The link is stored in config.js as JAN_SAHAYATA_GOOGLE_FORM, so it can be changed later without editing index.html.
+
+
+PART 7 — FINAL PRODUCTION CHECK
+1. Replace the old GitHub Pages files with this package.
+2. Test the site in a private/incognito window.
+3. Test the Google Form button.
+4. Submit a test complaint and verify Google Sheets receives it.
+5. Test complaint tracking with a test complaint ID.
+6. Test the AI Assistant and confirm no API key is exposed in frontend files.
+7. Test WhatsApp, phone and email buttons on mobile and desktop.
+8. Test every menu link and image.
